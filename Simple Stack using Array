@@ -1,0 +1,160 @@
+#include<iostream>
+using namespace std;
+class Stack{
+	private:
+		int arr[5];
+		int top;
+		
+		
+	public:
+		Stack(){
+			top=-1;
+			for(int i=0;i<5;i++)
+			{
+				arr[i]=0;
+			}
+		}
+		
+		bool isEmpty(){
+			if(top==-1)
+				return true;
+			else
+				return false;
+		}
+		
+		bool isFull(){
+			if(top==4)
+				return true;
+			
+			else
+				return false;
+		}
+		
+		void push(){
+			int value;
+			if(isFull()){
+				cout<<"Sorry, Stack is Full!"<<endl;
+			}
+			else{
+				cout<<"Enter the value:"<<endl;
+				cin>>value;
+				top++;
+				arr[top]=value;
+				cout<<"Value Pushed Successfully!"<<endl;
+			}
+		}
+		
+		int pop(){
+			if(isEmpty()){
+				cout<<"Stack is Empty!"<<endl;
+			}
+			else{
+				int poped=arr[top];
+				arr[top]=0;
+				top--;
+				cout<<"Poped Value:"<<poped<<endl;
+			}
+		}
+		
+		int peek(){
+			int position;
+			cout<<"Enter the index to check the value:"<<endl;
+			cin>>position;
+			if(position<5){
+				if(arr[position]==0){
+					cout<<"Nothing at this index!"<<endl;
+				}
+				else{
+					cout<<"value at entered index"<<arr[position]<<endl;;	
+				}
+			}
+			else{
+				cout<<"Please enter index less than 5"<<endl;
+			}
+		}
+		
+		void change(){
+			int value,position;
+			cout<<"Enter index where you want to change value:"<<endl;
+			cin>>position;
+			cout<<"Enter the value:"<<endl;
+			cin>>value;
+			if(position<5){
+				arr[position]=value;
+				cout<<"Value Changed Successfully!"<<endl;
+			}
+			else{
+				cout<<"Please enter index less than 5"<<endl;
+			}
+		}
+		
+		
+		int count(){
+			cout<<"Elements in the stack are:"<<top+1;
+		}
+		
+		int display(){
+			for(int i=4;i>=0;i--){
+				cout<<arr[i]<<endl;
+			}
+		}
+	
+};
+
+
+int main(){
+	Stack s1;
+	int choice;
+    do{
+    	cout<<"Please select an option -just enter action number- or enter 0 to quit:"<<endl;
+    	cout<<"1.push()\n2.pop()\n3.isEmpty()\n4.isFull()\n5.peek()\n6.count()\n7.change()\n8.display()\n9.Clear Screen\n0.Exit"<<endl;
+    	cin>>choice;
+    	cout<<endl;
+    	switch(choice){
+    		case 1:
+    			s1.push();
+    			break;
+    		case 2:
+    			s1.pop();
+    			break;
+    		case 3:
+				if(s1.isEmpty()){
+					cout<<"Stack is Empty!"<<endl;
+				}
+				else{
+					cout<<"No, Stack is not Empty!"<<endl;
+				}
+				break;
+			case 4:
+			 	if(s1.isFull()){
+			 		cout<<"Yes, Stack is Full!"<<endl;
+				 }
+				else{
+				 	cout<<"No, Stack is not Full!"<<endl;
+				 }
+				 
+				break;
+			case 5:
+				s1.peek();
+				break;
+			case 6:
+				s1.count();
+				break;
+			case 7:
+				s1.change();
+				break;
+			case 8:
+				s1.display();
+				break;
+			case 9:
+				system("cls");
+				break;
+			case 0:
+				break;
+			default:
+				cout<<"please enter only from 1-9,try again!"<<endl;
+			
+		}	
+	}while(choice!=0);
+	
+}
